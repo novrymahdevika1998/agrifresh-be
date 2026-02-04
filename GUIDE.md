@@ -202,7 +202,7 @@ function evaluateAlert(reading: SensorReading): AlertLevel {
 
 1. **Nullable Temperature/Humidity**: Schema allows NULL for both values independently. A sensor might report temperature but fail on humidity.
 
-2. **Unique Constraint**: `(silo_id, timestamp)` is unique. Re-ingesting the same CSV is idempotent - duplicates are silently skipped via `ON CONFLICT DO NOTHING`.
+2. **Unique Constraint**: `(silo_id)` is unique. Re-ingesting the same CSV is idempotent - duplicates are silently skipped via `ON CONFLICT DO NOTHING`.
 
 3. **Soft Error Handling**: Ingestion never fails due to bad data. All 36 readings from sample CSV are inserted even with 3 error values.
 
